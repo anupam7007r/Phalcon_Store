@@ -1,0 +1,18 @@
+index page of order controller
+<br>
+<?php
+$bearer = $this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/order/add'.'?bearer='.$bearer,
+    'Add Order'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/order/list'.'?bearer='.$bearer,
+    'List Orders'
+);
+echo "<h3>";
+echo $this->tag->linkTo(
+    '/admin/index'.'?bearer='.$bearer,
+    'Go To Index!'
+);

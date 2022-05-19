@@ -1,0 +1,21 @@
+<?php
+$bearer=$this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/secure/addrole'.'?bearer='.$bearer,
+    'Add Role'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/secure/addcomponent'.'?bearer='.$bearer,
+    'Add Component'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/secure/allowcomponent'.'?bearer='.$bearer,
+    'Allow Components'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/admin/index'.'?bearer='.$bearer,
+    'Go Back'
+);

@@ -1,0 +1,18 @@
+index page of product controller
+<br>
+<?php
+$bearer = $this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/product/add'.'?bearer='.$bearer,
+    'Add Product'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/product/list'.'?bearer='.$bearer,
+    'List Product'
+);
+echo "<h3>";
+echo $this->tag->linkTo(
+    '/admin/index'.'?bearer='.$bearer,
+    'Go To Index!'
+);

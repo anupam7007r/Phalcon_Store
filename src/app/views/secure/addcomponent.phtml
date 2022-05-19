@@ -1,0 +1,42 @@
+<h2>Sign up using this form</h2>
+<?php
+echo $this->tag->linkTo(
+    '/secure/index'.'?bearer='.$this->request->get('bearer'),
+    'Go Back!'
+); ?>
+<?php echo $this->tag->form(""); ?>
+<p>
+    <label for="role">Choose Role</label>
+    <?php echo $this->tag->select(
+        [
+            'role',
+            $roles,
+            
+            'using' => ['role', 'role']
+
+        ]
+    ); ?>
+</p>
+
+<p>
+    <label for="name">Add Controllers</label>
+    <?php echo $this->tag->textField("controller"); ?>
+</p>
+
+<p>
+    <label for="email">Add Actions</label>
+    <?php echo $this->tag->textField("action"); ?>
+</p>
+<?php if($message){?>
+<span class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>">
+    <?php echo $message.'<br>'; } ?>
+
+
+
+
+</span>
+<p>
+    <?php echo $this->tag->submitButton("Submit"); ?>
+</p>
+
+</form>

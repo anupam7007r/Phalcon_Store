@@ -1,0 +1,93 @@
+<h1>Allow Component</h1>
+<?php
+echo $this->tag->linkTo(
+    '/secure/index'.'?bearer='.$this->request->get('bearer'),
+    'Go Back!'
+);
+$ca = [];
+$a =  scandir("../app/controllers");
+foreach ($a as $k => $v) {
+    if (strlen($v) > 10) {
+        $className = basename($v, '.php');
+        $ca[$className] = [];
+        $methods2 = (new \ReflectionClass($className))->getMethods(\ReflectionMethod::IS_PUBLIC);
+        foreach ($methods2 as $method) {
+            if (\Phalcon\Text::endsWith($method->name, 'Action')) {
+                $method_trimed_name =  substr($method->name, 0, strpos($method->name, "Action"));
+                $ca[$className][] = $method_trimed_name;
+            }
+        }
+    }
+}
+?>
+<table class="table table-bordered table-striped" style="text-align:justify">
+    <tr>
+        <th>
+            Role
+        </th>
+        <th>
+            Controller
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    <form method="post" action="" enctype="multipart/form-data">
+
+        <!-- row start -->
+        <tr style="text-align:justify">
+
+            <td><select name="role">
+                    <option value='0'><?php echo '---Select Role---'; ?></option>
+                    <?php foreach ($roles as $k => $v) { ?>
+                        <option value=<?php echo strtolower($v); ?>><?php echo strtolower($v);
+                                                    } ?></option>
+                </select>
+            </td>
+
+
+            <td><select name="selectController">
+                    <option value='0'><?php echo '---Select---' ?></option>
+                    <?php foreach ($ca as $k => $v) { 
+                        ?>
+                        <option value='<?php echo $k = strtolower(substr($k, 0, strlen($k) - strlen("Controller"))); ?>'><?php echo $k; ?></option>
+                    <?php echo $k . '<br>';
+                    } ?>
+                </select> </td>
+
+                <!-- $k = strtolower(substr($k[0], 0, strlen($k[0]) - strlen("ontroller"))); -->
+
+
+
+            <td><select name="selectAction">
+                    <option value='0'><?php echo '---Select---' ?></option>
+                    <?php foreach ($ca as $k => $v) { ?>
+
+                        <?php
+
+                        foreach ($v as $vv) {
+                        ?>
+                            <option value='<?php echo strtolower($vv); ?>'><?php echo strtolower($vv); ?></option>
+                    <? echo $vv . '<br>';
+                        }
+                    } ?>
+
+                </select></td>
+            <!-- row end -->
+            <?php  ?>
+        </tr>
+</table>
+<?php if($error){?>
+<div class="alert alert-<?php echo $success === true ? 'success' : 'danger'; ?>" style="width:20%">
+    <?php echo $error . '<br>'; ?>
+</div>
+<? } ?>
+<input type="submit" name="allow" value="Save" />
+</form>
+<?php 
+// foreach ($postdata as $k) {
+//     print_r(json_encode($k));
+    //     foreach($k as $kk){
+    //     print_r($kk);
+    //     }
+// }

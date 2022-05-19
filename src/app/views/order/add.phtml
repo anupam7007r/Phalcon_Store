@@ -1,0 +1,49 @@
+<h2>Sign up using this form</h2>
+<?php
+echo $this->tag->linkTo(
+    '/order',
+    'Go Back!'
+); ?>
+<?php echo $this->tag->form("/order/add"); ?>
+
+<p>
+    <label for="name">Customer Name</label>
+    <?php echo $this->tag->textField("customer_name"); ?>
+</p>
+
+<p>
+    <label for="email">Customer Address</label>
+    <?php echo $this->tag->textArea("customer_address"); ?>
+</p>
+<p>
+    <label for="email">Zip Code</label>
+    <?php echo $this->tag->textField("zipcode"); ?>
+</p>
+<p>
+    <label for="email">Product</label>
+    <?php echo $this->tag->select(
+        [
+            'product_id',
+            $products,
+            'using' => ['product_name', 'product_name']
+
+        ]
+    ); ?>
+</p>
+<p>
+    <label for="email">Quantity</label>
+    <?php echo $this->tag->textField("quantity"); ?>
+</p>
+
+<span class="text text-<?php echo $success===true?'success':'danger';?>">
+    <?php echo $ordermsg; ?>
+  
+
+  
+
+</span>
+<p>
+    <?php echo $this->tag->submitButton("Place Order"); ?>
+</p>
+
+</form>

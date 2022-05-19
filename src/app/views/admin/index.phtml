@@ -1,0 +1,29 @@
+<?php
+$bearer = $this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/product/index'.'?bearer='.$bearer,
+    'Products'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/order/index'.'?bearer='.$bearer,
+    'Orders'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/settings/index'.'?bearer='.$bearer,
+    'Settings'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/secure/index'.'?bearer='.$bearer,
+    'Secure'
+);
+echo PHP_EOL.'<br>';
+echo $this->tag->linkTo(
+    '/users/index'.'?bearer='.$bearer,
+    'Add User'
+);
+echo PHP_EOL.'<br>';
+$this->request->get('bearer');
+echo $this->tag->linkTo(["logout/index?bearer=".$bearer, "LogOut!", 'class' => 'btn btn-danger mt-2'])."<br><br>";

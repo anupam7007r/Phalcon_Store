@@ -1,0 +1,46 @@
+<?php
+$bearer = $this->request->get('bearer');
+// die($bearer);
+?>
+<style>
+  body {
+    width: 60%;
+    margin: 5% 10% 10% 20%;
+  }
+</style>
+<div class="container mt-5">
+  <form class="form form-control" method="post" action="">
+    <div class="form-outline mb-4">
+      <label class="form-label">Role:</label>
+      <input type="text" id="" class="form-control" name="role" placeholder="Enter new Role" />
+      <span class="text text-<? echo $success == true ? 'success' : 'danger'; ?>">
+        <?php echo $msg; ?>
+      </span>
+    </div>
+
+
+    <!-- Submit button -->
+    <input type="submit" class="btn btn-primary btn-block" value="Add Role"/>
+    <a href="/secure/index?bearer=<?php echo $bearer; ?>" class="btn btn-success btn-block float-end" value="Add Role">Go Back</a>
+  </form>
+</div>
+<div>
+  <?php
+  if ($roles) { ?>
+    <table class="table table-primary table-striped table-bordered mt-5" style="width:40%;text-align:center;margin-left:30%;">
+      <tr>
+        <th class="text text-muted">ROLES</th>
+
+      </tr>
+      <?php
+      foreach ($roles as $k) { ?>
+        <tr>
+          <td><?php echo $k; ?></td>
+        </tr>
+        <?php } ?>
+    </table>
+<?php
+      }
+    
+?>
+</div>

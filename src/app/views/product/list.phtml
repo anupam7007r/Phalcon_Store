@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<?php
+
+$berval = $this->request->get('bearer');
+// print_r(json_encode($products));
+echo $this->tag->linkTo(
+    '/product/index'.'?bearer='.$berval,
+    'Go Back!'
+); ?>
+<div>
+                <form action="/product/list?locale="+locale method="GET">
+                    <select onchange="submit()" name="locale" value="locale">
+                        <option value="english">Choose Language</option>
+                        <option value="english">English</option>
+                        <option value="german">German</option>
+                        <option value="hindi">Hindi</option>
+                    </select>
+                    <input type="hidden" name="bearer" value="<?php echo $berval;?>">
+                </form>
+                <?php
+                if (isset($_GET['locale'])) {
+                    echo 'Language is set to ' . $_GET['locale'];
+                }
+                ?>
+            </div>
+            <?php  
+if ($products->count() > 0) {
+    ?>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th><?php echo $this->locale->_('Product ID')  ?></th>
+            <th><?php echo $this->locale->_('Product Name')  ?></th>
+            <th><?php echo $this->locale->_('Product Description')  ?></th>
+            <th><?php echo $this->locale->_('Tags')  ?></th>
+            <th><?php echo $this->locale->_('Price')  ?></th>
+            <th><?php echo $this->locale->_('Stock')  ?></th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td colspan="6">Total Number of Products: <?php echo $products->count(); ?></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <?php foreach ($products as $k) { ?>
+            <tr>
+                <td><?php echo $k->product_id; ?></td>
+                <td><?php echo $k->product_name; ?></td>
+                <td><?php echo $k->product_description; ?></td>
+                <td><?php echo $k->tags; ?></td>
+                <td><?php echo $k->price; ?></td>
+                <td><?php echo $k->stock; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php
+        }
+        ?>

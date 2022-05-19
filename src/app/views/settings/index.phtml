@@ -1,0 +1,44 @@
+<h2>Sign up using this form</h2>
+<?php
+$bearer=$this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/admin/index'.'?bearer='.$bearer,
+    'Go Back!'
+); ?>
+<?php echo $this->tag->form(""); ?>
+<p>
+    <label for="email">Title Optimization</label>
+    <?php echo $this->tag->select(
+        
+            'title_optimization',
+        [
+            '0'=>'Choose',
+            'With Tags' => 'With Tags',
+            'Without Tags' => 'Without Tags'
+
+        ]
+    ); ?>
+</p>
+<p>
+    <label for="name">Default Price</label>
+    <?php echo $this->tag->textField("default_price"); ?>
+</p>
+
+<p>
+    <label for="email">Default Stock</label>
+    <?php echo $this->tag->textField("default_stock"); ?>
+</p>
+<p>
+    <label for="email">Default Zip Code</label>
+    <?php echo $this->tag->textField("default_zipcode"); ?>
+</p>
+
+<span class="text text-<?php echo $success===true?'success':'danger';?>">
+    <?php echo $settingsmsg; ?>
+</span>
+<p>
+    <?php echo $this->tag->submitButton("Save Settings"); ?>
+</p>
+
+</form>
+<?php

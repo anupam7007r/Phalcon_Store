@@ -1,0 +1,38 @@
+<h2>Sign up using this form</h2>
+<?php
+$bearer = $this->request->get('bearer');
+echo $this->tag->linkTo(
+    '/product/index'.'?bearer='.$bearer,
+    'Go Back!'
+); ?>
+<?php echo $this->tag->form("/product/add"); ?>
+
+    <p>
+        <label for="name">Product Name</label>
+        <?php echo $this->tag->textField("product_name"); ?>
+    </p>
+
+    <p>
+        <label for="email">Description</label>
+        <?php echo $this->tag->textArea("product_description"); ?>
+    </p>
+    <p>
+        <label for="email">Tags</label>
+        <?php echo $this->tag->textField("tags"); ?>
+    </p>
+    <p>
+        <label for="email">Price</label>
+        <?php echo $this->tag->textField("price"); ?>
+    </p>
+    <p>
+        <label for="email">Stock</label>
+        <?php echo $this->tag->textField("stock"); ?>
+    </p>
+    <span class="text text-<?php echo $success===true?'success':'danger';?>">
+       <?php echo $msg; ?>
+    </span>
+    <p>
+        <?php echo $this->tag->submitButton("Add Product"); ?>
+    </p>
+
+</form>

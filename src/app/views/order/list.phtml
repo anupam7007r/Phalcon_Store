@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<?php
+$bearer = $this->request->get('bearer');
+// print_r(json_encode($products));
+echo $this->tag->linkTo(
+    '/order/index'.'?bearer='.$bearer,
+    'Go Back!'
+);   
+if ($orders->count() > 0) {
+    ?>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Customer Name</th>
+            <th>Customer Address</th>
+            <th>Zip Code</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td colspan="6" class="float:end">Total Orders: <?php echo $orders->count(); ?></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <?php foreach ($orders as $k) { ?>
+            <tr>
+                <td><?php echo $k->order_id; ?></td>
+                <td><?php echo $k->product_id; ?></td>
+                <td><?php echo $k->customer_name; ?></td>
+                <td><?php echo $k->customer_address; ?></td>
+                <td><?php echo $k->zipcode; ?></td>
+                <td><?php echo $k->quantity; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php
+        }
+        ?>
